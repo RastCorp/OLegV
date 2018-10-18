@@ -50,14 +50,14 @@ body {
     z-index: 2;
     left: 0px;
     top: 0;
-    line-height: 0;
+    /*line-height: 0;  */
 }
 
 .right {
     z-index: 2;
     right: 0;
     top: 0;
-    line-height: 0;
+    /*line-height: 0; */
 }
 
 .win-cont .filters {
@@ -277,8 +277,10 @@ span.min-price {
 }
 .subfilter-price {	left: 0px;
 	width: 305px;
-	height: 68px;
+	height: 0px;
 	padding: 5px 33px;
+}
+.subfilter-price.open {    height: 68px;
 }
 .subfilter-inner {
 	display: flex;	flex-direction: column;
@@ -307,8 +309,13 @@ span.min-price {
 	/*width: calc(100% - 16px);*/
 	width: 100%;
 	max-height: 923px;
+	height: 0px;
+	overflow: hidden;
 	border: 1px solid rgba(112, 112, 112, 0.2);
 	background-color: rgba(255, 255, 255, 0.6);
+}
+.subfilter-category.open {	height: 100%;
+	overflow: visible;
 }
 .subfilter-category .subfilter-inner > div {
 	width: 100%;
@@ -319,12 +326,15 @@ span.min-price {
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 	background: #fff;
 }
-.subfilter-category .category-item {	display: flex;
+.subfilter-category .category-item {	overflow: hidden;
+}
+.subfilter-category .category-item-content {	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
 	border: 1px solid rgba(112, 112, 112, 0.3);
 	box-shadow: 0px 3px 6px -3px rgba(0, 0, 0, 0.16);
+	cursor: pointer;
 }
 .subfilter-category .category-item img {	padding: 0 35px;
 	height: 64px;
@@ -333,6 +343,37 @@ span.min-price {
 .subfilter-category .category-item span {	font-size: 24px;
 	line-height: 32px;
 	margin-top: -3px;
+}
+.subfilter-category .category-item .subcategory {	/*display: none;*/
+	height: 0px;
+	opacity: 0;
+	transition: opacity 0.3s linear;
+	background-color: #eef3f4;
+}
+.subfilter-category .category-item.open .subcategory {	/*display: block; */
+	padding: 24px 0;
+	height: auto;
+	opacity: 1;
+	transition: opacity 0.3s linear;
+}
+.subfilter-category .category-item .caret:after {
+	display: none;
+	content: '\276E';
+    font-size: 30px;
+    height: 25px;
+    margin-left: 5px;
+    margin-top: 9px;
+    transform: rotate(-90deg);
+    width: 13px;
+}
+.subfilter-category .category-item.open .caret:after {    display: block;
+}
+.subfilter-category .category-item .subcategory-item {	padding-left: 120px;
+	cursor: pointer;
+	font-size: 21px;
+	line-height: 40px;
+}
+.subfilter-category .category-item .subcategory-item.selected, .subfilter-category .category-item .subcategory-item:hover {	background-color: rgba(212, 228, 197, 0.4);
 }
 .subfilter-category .category-controls {	height: 44px;
 	display: flex;
@@ -387,6 +428,7 @@ span.min-price {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  line-height: 11px;
 }
 
 .style-checkbox input[type="checkbox"] + label:before {
@@ -408,7 +450,6 @@ span.min-price {
   content: '\2714';
   font-size: 34px;
   border: 2px solid #E8E8EA;
-  padding-top: 6px;
 }
 
 </style>
@@ -446,102 +487,175 @@ span.min-price {
 	    				<div class="subfilter-inner">
 	    					<div class="category-items">
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/food.png">
-		                    		<span>Питание</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/food.png">
+			                    		<span>Питание</span>
+			                    		<span class="caret"></span>
+			                    	</div>
+			                    	<div class="subcategory">
+			                    		<div class="subcategory-item">
+			                    			Кафе
+			                    		</div>
+			                    		<div class="subcategory-item">
+			                    			Суши, бары, Рестораны
+			                    		</div>
+			                    		<div class="subcategory-item">
+			                    			Быстрое питание
+			                    		</div>
+			                    		<div class="subcategory-item">
+			                    			Столовые
+			                    		</div>
+			                    		<div class="subcategory-item">
+			                    			Еще подкатегория
+			                    		</div>
+			                    		<div class="subcategory-item">
+			                    			Еще подкатегория
+			                    		</div>
+			                    		<div class="subcategory-item">
+			                    			Еще подкатегория
+			                    		</div>
+			                    		<div class="subcategory-item">
+			                    			Еще подкатегория
+			                    		</div>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/everyday.png">
-		                    		<span>Бытовые услуги</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/everyday.png">
+			                    		<span>Бытовые услуги</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/business.png">
-		                    		<span>Деловые услуги</span>
+			                    	<div class="category-item-content">
+			                    		<img src="./img/categories/business.png">
+			                    		<span>Деловые услуги</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/realty.png">
-		                    		<span>Недвижимость</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/realty.png">
+			                    		<span>Недвижимость</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/it.png">
-		                    		<span>IT, интернет, телеком</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/it.png">
+			                    		<span>IT, интернет, телеком</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/beauty.png">
-		                    		<span>Красота</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/beauty.png">
+			                    		<span>Красота</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/sport.png">
-		                    		<span>Спорт</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/sport.png">
+			                    		<span>Спорт</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/medicine.png">
-		                    		<span>Медицина</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/medicine.png">
+			                    		<span>Медицина</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/courier.png">
-		                    		<span>Курьерские поручения</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/courier.png">
+			                    		<span>Курьерские поручения</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/building.png">
-		                    		<span>Ремонт и строительство</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/building.png">
+			                    		<span>Ремонт и строительство</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/holiday.png">
-		                    		<span>Праздники и мероприятия</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/holiday.png">
+			                    		<span>Праздники и мероприятия</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/auto.png">
-		                    		<span>Авто и перевозки</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/auto.png">
+			                    		<span>Авто и перевозки</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/cleaning.png">
-		                    		<span>Клининг</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/cleaning.png">
+			                    		<span>Клининг</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/education.png">
-		                    		<span>Обучение</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/education.png">
+			                    		<span>Обучение</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/relaxation.png">
-		                    		<span>Развлечение и отдых</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/relaxation.png">
+			                    		<span>Развлечение и отдых</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/animals.png">
-		                    		<span>Животные</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/animals.png">
+			                    		<span>Животные</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/advertising.png">
-		                    		<span>Реклама, полиграфия</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/advertising.png">
+			                    		<span>Реклама, полиграфия</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/garden.png">
-		                    		<span>Сад, благоустройство</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/garden.png">
+			                    		<span>Сад, благоустройство</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/security.png">
-		                    		<span>Охрана, безопасность</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/security.png">
+			                    		<span>Охрана, безопасность</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/care.png">
-		                    		<span>Патронаж, уход</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/care.png">
+			                    		<span>Патронаж, уход</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/friend.png">
-		                    		<span>Друг на час</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/friend.png">
+			                    		<span>Друг на час</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/charity.png">
-		                    		<span>Благотворительность</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/charity.png">
+			                    		<span>Благотворительность</span>
+			                    	</div>
 		                    	</div>
 		                    	<div class="category-item">
-		                    		<img src="./img/categories/rip.png">
-		                    		<span>Ритуальные услуги</span>
+		                    		<div class="category-item-content">
+			                    		<img src="./img/categories/rip.png">
+			                    		<span>Ритуальные услуги</span>
+			                    	</div>
 		                    	</div>
 		        			</div>
 		        			<div class="category-controls">
 		        				<div class="left-buttons">
-		        					<button>Выбрать все</button>
-		        					<button>Убрать все</button>
+		        					<button id="select-all">Выбрать все</button>
+		        					<button id="no-select">Убрать все</button>
 		        				</div>
 		        				<div class="category-hide-button">Скрыть</div>
 		        			</div>
@@ -620,19 +734,48 @@ span.min-price {
 
     <script type="text/javascript">
     	$(document).ready(function(){
+    		// клик на фильтр
     		$('.filter').on('click', function(){
     			$('.filter .subfilter-container').removeClass('open');    			$(this).find('.subfilter-container').addClass('open');    		});
 
-    		$('.subfilter-price [type=checkbox]').on('click', function(){
+			// клик на чекбокс в фильтре по цене
+    		$('.subfilter-price [type=checkbox]').on('click', function(e){
     			e.stopPropagation();
     			if ($(this).is(':checked')) console.log('Применили фильтр');
     			else console.log('Отменили фильтр');
     		});
 
+			// клик на категорию
+			$('.subfilter-category .category-item-content').on('click', function(e){
+				e.stopPropagation();
+				if ($(this).parent().hasClass('open')) {					$(this).parent().removeClass('open');
+				} else {
+	    			$('.subfilter-category .category-item').removeClass('open');
+	    			$(this).parent().addClass('open');
+				}
+    		});
+
+			// клик на подкатегорию
+    		$('.subfilter-category .category-item .subcategory-item').on('click', function(e){
+				e.stopPropagation();
+    			$(this).toggleClass('selected');
+    		});
+    		// клик на кнопку "Выбрать все"
+    		$('#select-all').on('click', function(e){
+				e.stopPropagation();
+    			$('.subfilter-category .category-item .subcategory-item').addClass('selected');
+    		});
+    		// клик на кнопку "Убрать все"
+    		$('#no-select').on('click', function(e){
+				e.stopPropagation();
+    			$('.subfilter-category .category-item .subcategory-item').removeClass('selected');
+    		});
+
+			// клик на кнопку "Скрыть"
     		$('.subfilter-category .category-hide-button').on('click', function(e){
     		    e.stopPropagation();    			$('.subfilter-category').removeClass('open');    		});
 
-			var $range = $(".js-range-slider"),
+            // слайдер			var $range = $(".js-range-slider"),
 			    $inputFrom = $(".js-input-from"),
 			    $inputTo = $(".js-input-to"),
 			    instance,
@@ -640,9 +783,6 @@ span.min-price {
 			    max = $range.data('max'),
 			    from = $range.data('from'),
 			    to = $range.data('to');
-
-			    //$inputFrom.val(from);
-			    //$inputTo.val(to);
 
 			$range.ionRangeSlider({
 			    type: "double",
@@ -703,7 +843,8 @@ span.min-price {
 			    instance.update({
 			        to: val
 			    });
-			});    	});
+			});
+			/* конец слайдера */    	});
     </script>
 </body>
 </html>
