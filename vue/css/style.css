@@ -8,12 +8,12 @@ img {
 	max-height: 100%;
 }
 .win-cont{
-    --btn-color: rgba(171,211,226,1);
+    --btn-color: rgba(170,211,230,1);
     width: 800px;
 }
 
 ::selection, ::-moz-selection{
-	background: rgba(171,211,226,1);
+	background: rgba(170,211,230,1);
 	color: #000;
 }
 .left {
@@ -188,7 +188,7 @@ p.text {
 }
 #top_left .card-carousel-cards .card-carousel--card {
 	min-height: 79px;
-    min-width: 79px;  
+    min-width: 79px;
     margin: 0 9.5px;
     transition: width 0.3s, height 0.3s;
 }
@@ -219,7 +219,7 @@ p.text {
 	cursor: pointer;
 	text-align: center;
 	min-height: 79px;
-	min-width: 79px;	
+	min-width: 79px;
 	transition: width 0.3s, height 0.3s;
 }
 .block img, #top_left .card-carousel-cards .card-carousel--card img {
@@ -305,7 +305,7 @@ p.text {
 }
 .carousel-albums .card-carousel-cards .card-carousel--card {
 	min-width: 172px;
-    min-height: 115px;  
+    min-height: 115px;
 }
 .my_photo {
 	margin-top: 7px;
@@ -425,7 +425,7 @@ p.text {
 }
 .news-list {
 	background-color: white;
-	padding-top: 6px;	
+	padding-top: 6px;
 }
 .news-list .arrow {
 	width: 29px;
@@ -488,7 +488,7 @@ p.text {
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.85);
 	text-align: left;
-	font-size: 14px; 
+	font-size: 14px;
 	padding-left: 10px;
 	line-height: 19px;
 }

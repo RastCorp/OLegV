@@ -5,12 +5,23 @@
     <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css"/>
     <link type="text/css" rel="stylesheet" href="./css/bootstrap-vue.css"/>
 
+    <!-- slider -->
+    <link type="text/css" rel="stylesheet" href="./css/ion.rangeSlider.css"/>
+    <link type="text/css" rel="stylesheet" href="./css/ion.rangeSlider.skinSimple.css"/>
+    <script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous">
+	</script>
+	<script type="text/javascript" src="./js/ion.rangeSlider.min.js"></script>
+	<!-- slider -->
+
     <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
     <!-- Add this after vue.js -->
     <script type="text/javascript" src="./js/polyfill.min.js"></script>
-    <script type="text/javascript" src="./js/bootstrap-vue.js"></script> 
+    <script type="text/javascript" src="./js/bootstrap-vue.js"></script>
+    <script type="text/javascript" src="./js/star-rating.min.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
-    <script src="./js/star-rating.min.js"></script>
 
 <style type="text/css">
 body {
@@ -20,12 +31,19 @@ body {
 	box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "u2000";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./fonts/u2000.eot?#iefix") format("embedded-opentype"), url("./fonts/u2000.woff") format("woff"), url("./fonts/u2000.ttf") format("truetype"), url("./fonts/u2000.svg#universaliaregular") format("svg");
+}
+
 
 
 
 
 .win-cont{
-    --btn-color: rgba(171,211,226,1);
+    --btn-color: rgba(170,211,230,1);
     width: 600px;
 }
 .left {
@@ -49,7 +67,7 @@ body {
 }
 
 .filters .filter {
-    height: 30px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,14 +75,15 @@ body {
     padding-right: 5px;
     padding-left: 0px;
     padding-right: 0px;
+    position: relative;
 }
 
 .filters .left {
-    margin-right: -13px;
+    margin-right: -23px;
 }
 
 .filters .right {
-    margin-left: -13px;
+    margin-left: -23px;
 }
 
 .filter.first {
@@ -77,19 +96,21 @@ body {
     display: flex;
     align-items: center;
     background-color: var(--btn-color);
-    height: 30px;
+    height: 50px;
     padding: 0 3px;
     cursor: pointer;
+    font-size: 18px;
+    line-height: 24px;
 }
 
 .filters .active p {
     background-color: white;
 }
 .filters .active::after {
-    border-bottom: 30px solid white;
+    border-bottom: 50px solid white;
 }
 .filters .active::before {
-    border-top: 30px solid white;
+    border-top: 50px solid white;
 }
 
 p.text {
@@ -97,7 +118,7 @@ p.text {
 }
 
 .filter.first p {
-	
+
 }
 
 .angle-left::before {
@@ -108,8 +129,8 @@ p.text {
     height: 0;
     margin: 0;
     padding: 0;
-    border-top: 30px solid var(--btn-color);
-    border-left: 30px solid transparent;
+    border-top: 50px solid var(--btn-color);
+    border-left: 50px solid transparent;
     cursor: pointer;
 }
 
@@ -121,25 +142,26 @@ p.text {
     height: 0;
     margin: 0;
     padding: 0;
-    border-bottom: 30px solid var(--btn-color);
-    border-right: 30px solid transparent;
+    border-bottom: 50px solid var(--btn-color);
+    border-right: 50px solid transparent;
     cursor: pointer;
 }
 .last-filter, .last-filter p {
 	width: 100%;
 }
 .text::after {
-    font-size: 24px;
-    margin-top: 9px;
+    font-size: 32px;
+    margin-top: -10px;
     margin-left: 3px;
     width: 21px;
     height: 13px;
     display: none;
+    font-family: u2000;
 }
 .sort_asc .text::after {
     content: '\23F6';
     display: block;
-    margin-top: 13px;
+    margin-top: -4px;
 }
 .sort_desc .text::after {
     content: '\23F7';
@@ -238,7 +260,89 @@ span.min-price {
     text-align: center;
     margin-bottom: 0px;
 }
-	
+
+
+
+.subfilter {	position: absolute;
+	top: 52px;
+	z-index: 2;
+	background-color: #fff;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+.subfilter-price {	left: 0px;
+	width: 305px;
+	height: 68px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 5px 33px;
+}
+.subfilter-price .inputs {	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+.subfilter-price .inputs input {	border: 1px solid rgba(112, 112, 112, 1);
+	font-size: 16px;
+	width: 87px;
+	text-slign: center;
+	height: 25px;
+}
+.slider {	width: 100%;
+}
+.delimiter {	color: #707070;
+}
+.irs {	height: auto;
+}
+
+
+/* Checkbox */
+.style-checkbox {
+}
+
+/*Checkboxes styles*/
+.style-checkbox input[type="checkbox"] { display: none; }
+
+.style-checkbox input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  color: #AAD3E6;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.style-checkbox input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #AAD3E6;
+  position: absolute;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+  top: -3px;
+  left: 10px;
+}
+
+.style-checkbox input[type="checkbox"]:checked + label:before {
+  /*border-radius: 0;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg); */
+  opacity: 1;
+  content: '\2714';
+  font-size: 34px;
+  border: 2px solid #E8E8EA;
+  padding-top: 6px;
+}
+
 </style>
 
 </head>
@@ -248,39 +352,33 @@ span.min-price {
     		<div class="filters">
     			<div class="filter left first angle-right sort_asc">
     				<p class="text">Цена</p>
-    			</div> 
+    				<div class="subfilter subfilter-price">
+                    	<div class="inputs">
+                    		<input type="text" class="js-input-from" value="">
+                    		<span class="delimiter">-</span>
+                    		<input type="text" class="js-input-to" value="">
+                    		<div class="style-checkbox">
+							  <input type="checkbox" name="send" id="price-checkbox">
+							  <label for="price-checkbox"></label>
+							</div>
+                    	</div>
+                    	<div class="slider">
+                    		<input type="text" class="js-range-slider" data-min="0" data-from="2000" data-max="5000" data-to="5000">
+                    	</div>
+    				</div>
+    			</div>
     			<div class="filter left right angle-left angle-right sort_desc active">
     				<p class="text">Рейтинг</p>
-    			</div> 
+    			</div>
     			<div class="filter left right angle-left angle-right">
     				<p class="text">Категория</p>
-    			</div> 
+    			</div>
     			<div class="filter right angle-left last-filter">
     				<p class="text"></p>
     			</div>
     		</div>
 
             <div data-v-4190e25c="" class="list-res">
-                
-
-                <div data-v-4190e25c="" class="item">
-                    <div data-v-4190e25c="" class="part1">
-                        <p data-v-4190e25c="" class="title"><a href="">Кальян-бар</a></p>
-                        <div data-v-4190e25c="" class="info">
-                            <div class="rating">
-                                <star-rating v-model="rating" :star-size="19" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
-                            </div>
-                            <div class="rating_label">2.5 <span class="min-price">цена от 100</span></div>
-                        </div>
-                        <p data-v-4190e25c="" class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
-                            <br data-v-4190e25c="">открыт до 18:00
-                        </p>
-                    </div>
-                    <div data-v-4190e25c="" class="part2">
-                        <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
-                        <p data-v-4190e25c="" class="text">нет отзывов</p>
-                    </div>
-                </div>
 
 
                 <div data-v-4190e25c="" class="item">
@@ -320,9 +418,104 @@ span.min-price {
                         <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
                         <p data-v-4190e25c="" class="text">нет отзывов</p>
                     </div>
-                </div>                                
+                </div>
+
+
+                <div data-v-4190e25c="" class="item">
+                    <div data-v-4190e25c="" class="part1">
+                        <p data-v-4190e25c="" class="title"><a href="">Кальян-бар</a></p>
+                        <div data-v-4190e25c="" class="info">
+                            <div class="rating">
+                                <star-rating v-model="rating" :star-size="19" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                            </div>
+                            <div class="rating_label">2.5 <span class="min-price">цена от 100</span></div>
+                        </div>
+                        <p data-v-4190e25c="" class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
+                            <br data-v-4190e25c="">открыт до 18:00
+                        </p>
+                    </div>
+                    <div data-v-4190e25c="" class="part2">
+                        <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
+                        <p data-v-4190e25c="" class="text">нет отзывов</p>
+                    </div>
+                </div>
             </div>
     	</div>
     </div>
+
+    <script type="text/javascript">
+    	$(document).ready(function(){			var $range = $(".js-range-slider"),
+			    $inputFrom = $(".js-input-from"),
+			    $inputTo = $(".js-input-to"),
+			    instance,
+			    min = $range.data('min'),
+			    max = $range.data('max'),
+			    from = $range.data('from'),
+			    to = $range.data('to');
+
+			    //$inputFrom.val(from);
+			    //$inputTo.val(to);
+
+			$range.ionRangeSlider({
+			    type: "double",
+			    min: min,
+			    max: max,
+			    from: from,
+			    to: to,
+			    step: 10,
+			    hide_min_max: true,
+			    hide_from_to: true,
+			    grid: false,
+			    drag_interval: true,
+			    onStart: updateInputs,
+			    onChange: updateInputs,
+			    onFinish: finish
+			});
+			instance = $range.data("ionRangeSlider");
+
+			//  когда пользователь отпускает ползунок
+			function finish (data) {				//console.log(data.from, data.to);
+			}
+            //  изменяет значения в полях
+			function updateInputs (data) {
+				from = data.from;
+			    to = data.to;
+
+			    $inputFrom.prop("value", from);
+			    $inputTo.prop("value", to);
+			}
+
+			//  когда изменили значение в поле От
+			$inputFrom.on("input", function () {
+			    var val = $(this).prop("value");
+
+			    // validate
+			    if (val < min) {
+			        val = min;
+			    } else if (val > to) {
+			        val = to;
+			    }
+
+			    instance.update({
+			        from: val
+			    });
+			});
+
+			//  когда изменили значение в поле До
+			$inputTo.on("input", function () {
+			    var val = $(this).prop("value");
+
+			    // validate
+			    if (val < from) {
+			        val = from;
+			    } else if (val > max) {
+			        val = max;
+			    }
+
+			    instance.update({
+			        to: val
+			    });
+			});    	});
+    </script>
 </body>
 </html>

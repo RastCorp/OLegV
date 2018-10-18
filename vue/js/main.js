@@ -1,4 +1,4 @@
-window.onload = function() {
+$(document).ready(function(){
 
 
 // top-left, companies
@@ -32,15 +32,15 @@ Vue.component("carousel", {
     moveCarousel(direction) {
       // Find a more elegant way to express the :style. consider using props to make it truly generic
       if (direction === 1 && !this.atEndOfList) {
-        this.items[this.currentItem+this.windowSize].visible = 'visible'; 
-        this.currentOffset -= this.paginationFactor;  
-        this.items[this.currentItem].visible = 'hidden';   
-        this.currentItem++;   
+        this.items[this.currentItem+this.windowSize].visible = 'visible';
+        this.currentOffset -= this.paginationFactor;
+        this.items[this.currentItem].visible = 'hidden';
+        this.currentItem++;
       } else if (direction === -1 && !this.atHeadOfList) {
         this.items[this.currentItem-1].visible = 'visible';
         this.currentOffset += this.paginationFactor;
-        this.items[this.currentItem+this.windowSize-1].visible = 'hidden'; 
-        this.currentItem--; 
+        this.items[this.currentItem+this.windowSize-1].visible = 'hidden';
+        this.currentItem--;
       }
     },
   }
@@ -77,15 +77,15 @@ Vue.component("carouselalbums", {
     moveCarousel(direction) {
       // Find a more elegant way to express the :style. consider using props to make it truly generic
       if (direction === 1 && !this.atEndOfList) {
-        this.items[this.currentItem+this.windowSize].visible = 'visible'; 
-        this.currentOffset -= this.paginationFactor;  
-        this.items[this.currentItem].visible = 'hidden';   
-        this.currentItem++;   
+        this.items[this.currentItem+this.windowSize].visible = 'visible';
+        this.currentOffset -= this.paginationFactor;
+        this.items[this.currentItem].visible = 'hidden';
+        this.currentItem++;
       } else if (direction === -1 && !this.atHeadOfList) {
         this.items[this.currentItem-1].visible = 'visible';
         this.currentOffset += this.paginationFactor;
-        this.items[this.currentItem+this.windowSize-1].visible = 'hidden'; 
-        this.currentItem--; 
+        this.items[this.currentItem+this.windowSize-1].visible = 'hidden';
+        this.currentItem--;
       }
     },
   }
@@ -122,15 +122,15 @@ Vue.component("carouselnews", {
     moveCarousel(direction) {
       // Find a more elegant way to express the :style. consider using props to make it truly generic
       if (direction === 1 && !this.atEndOfList) {
-        this.items[this.currentItem+this.windowSize].visible = 'visible'; 
-        this.currentOffset -= this.paginationFactor;  
-        this.items[this.currentItem].visible = 'hidden';   
-        this.currentItem++;   
+        this.items[this.currentItem+this.windowSize].visible = 'visible';
+        this.currentOffset -= this.paginationFactor;
+        this.items[this.currentItem].visible = 'hidden';
+        this.currentItem++;
       } else if (direction === -1 && !this.atHeadOfList) {
         this.items[this.currentItem-1].visible = 'visible';
         this.currentOffset += this.paginationFactor;
-        this.items[this.currentItem+this.windowSize-1].visible = 'hidden'; 
-        this.currentItem--; 
+        this.items[this.currentItem+this.windowSize-1].visible = 'hidden';
+        this.currentItem--;
       }
     },
   }
@@ -143,7 +143,7 @@ new Vue({
     data:{
     rating: 3,
     tabIndex: 0,
-  },  
+  },
   methods: {
     setRating: function(rating){
       this.rating= rating;
@@ -162,4 +162,4 @@ new Vue({
 });
 
 
-}
+});
