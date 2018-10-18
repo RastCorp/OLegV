@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap-vue.css"/>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+	<!-- Add this after vue.js -->
+	<script type="text/javascript" src="./js/polyfill.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap-vue.js"></script> 
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/sass.js"></script>
+
+    <title>Личный кабинет / Профиль</title>
+    <style id="scss"></style>
+  </head>
+  <body>
+ 	<script>
+ 	var sass = new Sass();
+    
+	var base = '../css/';
+	var directory = '';
+	var files = [
+		'carousel.scss',
+	];
+
+ 	sass.preloadFiles(base, directory, files, function() { 
+
+    sass.compileFile('carousel.scss', function(result) {
+        document.getElementById('scss').innerHTML = result.text;
+      });
+
+  });
+
+  </script>
+
+
+<script id="v-carousel" type="x/template">
+    <div class="card-carousel-wrapper">
+        <div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>
+        <div class="card-carousel">
+            <div class="card-carousel--overflow-container">
+                <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
+                    <div class="card-carousel--card" v-for="item in items"><img src="https://placehold.it/200x200" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+    </div>
+</script>
+<div id="app">
+    <carousel></carousel>
+    <carousel></carousel>
+</div>
+
+
+<!--
+
+<div id="app">
+	<script type="text/x-template" id="hello-world-template">
+		<p>Hello hello hello</p>
+</script>
+	<carousel >
+		<div class="card-carousel-wrapper">
+			<div disabled="disabled" class="card-carousel--nav__left"></div>
+			<div class="card-carousel">
+				<div class="card-carousel--overflow-container">
+					<div class="card-carousel-cards" style="transform: translateX(0px);">
+						<div class="card-carousel--card">
+							<img src="https://placehold.it/200x200">
+						</div>
+						<div class="card-carousel--card">
+							<img src="https://placehold.it/200x200">
+						</div>
+						<div class="card-carousel--card">
+							<img src="https://placehold.it/200x200">
+						</div>
+						<div class="card-carousel--card">
+							<img src="https://placehold.it/200x200">
+						</div>
+						<div class="card-carousel--card">
+							<img src="https://placehold.it/200x200">
+						</div>
+						<div class="card-carousel--card">
+							<img src="https://placehold.it/200x200">
+						</div>
+						<div class="card-carousel--card">
+							<img src="https://placehold.it/200x200">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-carousel--nav__right"></div>
+		</div>
+	</carousel>
+</div>
+-->
+
+  </body>
+</html>

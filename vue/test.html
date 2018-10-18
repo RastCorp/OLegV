@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="./css/bootstrap-vue.css"/>
+
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <!-- Add this after vue.js -->
+    <script type="text/javascript" src="./js/polyfill.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-vue.js"></script> 
+    <script type="text/javascript" src="./js/main.js"></script>
+    <script src="./js/star-rating.min.js"></script>
+
+<style type="text/css">
+body {
+	margin: 0;
+}
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+
+
+
+
+.win-cont{
+    --btn-color: rgba(171,211,226,1);
+    width: 600px;
+}
+.left {
+    z-index: 2;
+    left: 0px;
+    top: 0;
+    line-height: 0;
+}
+
+.right {
+    z-index: 2;
+    right: 0;
+    top: 0;
+    line-height: 0;
+}
+
+.win-cont .filters {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.filters .filter {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.filters .left {
+    margin-right: -13px;
+}
+
+.filters .right {
+    margin-left: -13px;
+}
+
+.filter.first {
+    /*padding-left: 3px;*/
+}
+
+.filter .text{
+    text-transform: uppercase;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background-color: var(--btn-color);
+    height: 30px;
+    padding: 0 3px;
+    cursor: pointer;
+}
+
+.filters .active p {
+    background-color: white;
+}
+.filters .active::after {
+    border-bottom: 30px solid white;
+}
+.filters .active::before {
+    border-top: 30px solid white;
+}
+
+p.text {
+    font-size: 13px;
+}
+
+.filter.first p {
+	
+}
+
+.angle-left::before {
+    content: '';
+    position: relative;
+    left: 0px;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-top: 30px solid var(--btn-color);
+    border-left: 30px solid transparent;
+    cursor: pointer;
+}
+
+.angle-right::after {
+    content: '';
+    position: relative;
+    right: 0px;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-bottom: 30px solid var(--btn-color);
+    border-right: 30px solid transparent;
+    cursor: pointer;
+}
+.last-filter, .last-filter p {
+	width: 100%;
+}
+.text::after {
+    font-size: 24px;
+    margin-top: 9px;
+    margin-left: 3px;
+    width: 21px;
+    height: 13px;
+    display: none;
+}
+.sort_asc .text::after {
+    content: '\23F6';
+    display: block;
+    margin-top: 13px;
+}
+.sort_desc .text::after {
+    content: '\23F7';
+    display: block;
+}
+
+
+
+
+.list-res {
+    overflow-y: scroll;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0;
+    text-align: left;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.list-res .item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 1px solid rgb(218, 213, 213);
+    padding: 12px 30px 12px 42px;
+}
+.list-res .item:hover {
+    background-color: #E8E8EA;
+}
+.part1 {
+
+    padding-right: 3px;
+
+}
+.part2 {
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+}
+.list-res .item p.title {
+    font-size: 24px;
+    margin-bottom: 0;
+    line-height: 32px;
+}
+.list-res .item p.title a, .list-res .item p.title a:link, .list-res .item p.title a:active, .list-res .item p.title a:hover, .list-res .item p.title a:visited {
+    color: #000;
+    text-decoration: none;
+}
+span.min-price {
+    margin-left: 24px;
+    font-size: 16px;
+}
+.list-res .item div.info {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 18px;
+    line-height: 21px;
+}
+.list-res .item .rating {
+    height: 19px;
+    font-size: 10px;
+    line-height: 10px;
+}
+.list-res .item .rating_label {
+    margin-left: 5px;
+}
+.list-res .part1 p.text{
+    font-size: 13px;
+    line-height: 21px;
+    margin-top: 9px;
+}
+.list-res .item img {
+
+    width: 107px;
+    height: 107px;
+
+}
+.part2 p {
+    text-align: center;
+    margin-bottom: 0px;
+}
+	
+</style>
+
+</head>
+<body>
+    <div id="app">
+    	<div class="win-cont">
+    		<div class="filters">
+    			<div class="filter left first angle-right sort_asc">
+    				<p class="text">Цена</p>
+    			</div> 
+    			<div class="filter left right angle-left angle-right sort_desc active">
+    				<p class="text">Рейтинг</p>
+    			</div> 
+    			<div class="filter left right angle-left angle-right">
+    				<p class="text">Категория</p>
+    			</div> 
+    			<div class="filter right angle-left last-filter">
+    				<p class="text"></p>
+    			</div>
+    		</div>
+
+            <div data-v-4190e25c="" class="list-res">
+                
+
+                <div data-v-4190e25c="" class="item">
+                    <div data-v-4190e25c="" class="part1">
+                        <p data-v-4190e25c="" class="title"><a href="">Кальян-бар</a></p>
+                        <div data-v-4190e25c="" class="info">
+                            <div class="rating">
+                                <star-rating v-model="rating" :star-size="19" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                            </div>
+                            <div class="rating_label">2.5 <span class="min-price">цена от 100</span></div>
+                        </div>
+                        <p data-v-4190e25c="" class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
+                            <br data-v-4190e25c="">открыт до 18:00
+                        </p>
+                    </div>
+                    <div data-v-4190e25c="" class="part2">
+                        <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
+                        <p data-v-4190e25c="" class="text">нет отзывов</p>
+                    </div>
+                </div>
+
+
+                <div data-v-4190e25c="" class="item">
+                    <div data-v-4190e25c="" class="part1">
+                        <p data-v-4190e25c="" class="title"><a href="">Кальян-бар</a></p>
+                        <div data-v-4190e25c="" class="info">
+                            <div class="rating">
+                                <star-rating v-model="rating" :star-size="19" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                            </div>
+                            <div class="rating_label">2.5 <span class="min-price">цена от 100</span></div>
+                        </div>
+                        <p data-v-4190e25c="" class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
+                            <br data-v-4190e25c="">открыт до 18:00
+                        </p>
+                    </div>
+                    <div data-v-4190e25c="" class="part2">
+                        <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
+                        <p data-v-4190e25c="" class="text">нет отзывов</p>
+                    </div>
+                </div>
+
+
+                <div data-v-4190e25c="" class="item">
+                    <div data-v-4190e25c="" class="part1">
+                        <p data-v-4190e25c="" class="title"><a href="">Кальян-бар</a></p>
+                        <div data-v-4190e25c="" class="info">
+                            <div class="rating">
+                                <star-rating v-model="rating" :star-size="19" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                            </div>
+                            <div class="rating_label">2.5 <span class="min-price">цена от 100</span></div>
+                        </div>
+                        <p data-v-4190e25c="" class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
+                            <br data-v-4190e25c="">открыт до 18:00
+                        </p>
+                    </div>
+                    <div data-v-4190e25c="" class="part2">
+                        <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
+                        <p data-v-4190e25c="" class="text">нет отзывов</p>
+                    </div>
+                </div>                                
+            </div>
+    	</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+<style type="text/css">
+body {
+	margin: 0;
+}
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+
+
+
+
+.win-cont{
+    --btn-color: rgba(171,211,226,1);
+    width: 400px;
+}
+.left {
+    z-index: 2;
+    left: 0px;
+    top: 0;
+    line-height: 0;
+}
+
+.right {
+    z-index: 2;
+    right: 0;
+    top: 0;
+    line-height: 0;
+}
+
+.win-cont .filters {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.filters .filter {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.filters .left {
+    margin-right: -13px;
+}
+
+.filters .right {
+    margin-left: -13px;
+}
+
+.filter.first {
+    /*padding-left: 3px;*/
+}
+
+.filter .text{
+    text-transform: uppercase;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background-color: var(--btn-color);
+    height: 30px;
+    padding: 0 3px;
+    cursor: pointer;
+}
+
+p.text {
+    font-size: 13px;
+}
+
+.filter.first p {
+	
+}
+
+.angle-left::before {
+    content: '';
+    position: relative;
+    left: 0px;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-top: 30px solid var(--btn-color);
+    border-left: 30px solid transparent;
+    cursor: pointer;
+}
+
+.angle-right::after {
+    content: '';
+    position: relative;
+    right: 0px;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-bottom: 30px solid var(--btn-color);
+    border-right: 30px solid transparent;
+    cursor: pointer;
+}
+.last-filter, .last-filter p {
+	width: 100%;
+}
+	
+</style>
+
+</head>
+<body>
+	<div class="win-cont">
+		<div class="filters">
+			<div class="filter left first angle-right">
+				<p class="text">Цена</p>
+			</div> 
+			<div class="filter left right angle-left angle-right">
+				<p class="text">Рейтинг</p>
+			</div> 
+			<div class="filter left right angle-left angle-right">
+				<p class="text">Категория</p>
+			</div> 
+			<div class="filter right angle-left last-filter">
+				<p class="text"></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

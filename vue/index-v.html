@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap-vue.css"/>
+    <link rel="stylesheet" href="./css/style.css">
+
+	<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+	<!-- Add this after vue.js -->
+	<script type="text/javascript" src="./js/polyfill.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap-vue.js"></script> 
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/sass.js"></script>
+	<script src="./js/star-rating.min.js"></script>
+	<!--<script src="https://unpkg.com/vue-star-rating@1.3.1/dist/star-rating.min.js"></script>-->
+
+
+    <title>Личный кабинет / Профиль</title>
+    <style id="scss"></style>
+  </head>
+  <body>
+
+ 	<script>
+ 	var sass = new Sass();
+    
+	var base = '../css/';
+	var directory = '';
+	var files = [
+		'carousel.scss',
+	];
+
+ 	sass.preloadFiles(base, directory, files, function() { 
+
+	    sass.compileFile('carousel.scss', function(result) {
+	        document.getElementById('scss').innerHTML = result.text;
+	      });
+
+	  });
+
+  	</script> 
+  	<script id="v-carousel" type="x/template">
+	    <div class="row top-line card-carousel-wrapper">
+	        <div class="arrow card-carousel--nav__left col-1" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>
+	        <div class="card-carousel companies">
+	            <div class="container-fluid">
+	                <div class="card-carousel-cards row" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
+	                    <div class="card-carousel--card" :style="{ visibility: item.visible }" v-for="item in items">
+	                    	<img :src="item.img" />
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="arrow card-carousel--nav__right col-1" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+	    </div>
+	</script>
+
+  	<script id="v-carouselalbums" type="x/template">
+	    <div class="carousel-albums card-carousel-wrapper profile-bg">
+	        <div class="arrow card-carousel--nav__up" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>
+	        <div class="card-carousel albums">
+	            <div class="container-fluid">
+	                <div class="card-carousel-cards" :style="{ transform: 'translateY' + '(' + currentOffset + 'px' + ')'}">
+	                    <div class="card-carousel--card my_photo" :style="{ visibility: item.visible }" v-for="item in items">
+	                    	<img :src="item.img" />
+	                    	<p>{{ item.text }}</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="arrow card-carousel--nav__down" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+	    </div>
+	</script>	
+
+  	<script id="v-carouselnews" type="x/template">
+	    <div class="carousel-news card-carousel-wrapper news-list">
+	        <div class="arrow card-carousel--nav__left col-1" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>
+	        <div class="card-carousel news">
+	            <div class="container-fluid">
+	                <div class="card-carousel-cards row" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
+	                    <div class="card-carousel--card news-item" :style="{ visibility: item.visible }" v-for="item in items">
+	                    	<div class="news-item-no-write">
+		                    	<div class="except_comments">
+			                    	<div class="author">
+										<div class="avatar"><img src="./img/avatar.png"></div>
+										<div class="info">
+											<div class="name">Екатерина Енотова </div>
+											<div class="date">6 авг 2018 13:30</div>
+										</div>
+									</div>
+									<div class="news-photo">
+										<b-carousel id="carousel1"
+											style="text-shadow: 1px 1px 2px #333;"
+											controls
+											indicators
+											background="#ababab"
+											:interval=0
+											v-model="slide"
+											>
+
+											<b-carousel-slide :img-src="item.img"></b-carousel-slide>
+											<b-carousel-slide :img-src="item.img"></b-carousel-slide>
+
+										</b-carousel>
+			                    		<!--<img :src="item.img" />-->
+			                    		<div class="news-title">
+			                    			<h3>Отдых в турции</h3>
+			                    			Отдых по низким ценам
+			                    		</div>
+			                    	</div>
+									<div class="icons-control">
+										<div class="like"><img src="./img/heart2.png"></div>
+										<div class="location"><img src="./img/locate-places.png"></div>
+										<div class="chat"><img src="./img/chat.png"></div>
+										<div class="more"><img src="./img/more.png"></div>
+										<div class="views"><img src="./img/eye.png"></div>
+										<div class="share"><img src="./img/share2.png"></div>
+									</div>
+								</div>
+								<div class="comments">
+									<div class="all_comments">Смотреть все комментарии (8)</div>
+									<div class="comment-item">										
+										Екатерина Енотова: оооооооооооооооооооооооочень хочу такой
+									</div>
+								</div>
+							</div>
+							<div class="write-comment">
+								<div class="avatar"><img src="./img/avatar.png"> Написать</div>
+								<div class="right_menu">
+									<div class="send"><img src="./img/i-send.png"></div>
+									<div class="comment-menu"><img src="./img/i-menu.png"></div>
+								</div>
+							</div>	                    		
+	                    	
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="arrow card-carousel--nav__right col-1" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+	    </div>
+	</script>		
+
+
+
+	<div id="app">
+
+		<div id="map"></div>
+		<div id="overlay"></div>
+
+		<div id="top_left">
+			<div class="container-fluid">
+				<carousel></carousel>
+			</div>
+		</div>
+
+		<div id="top_right">
+			<a href="#">
+				<img src="./img/settings.png">
+			</a>
+		</div>
+
+		<div id="bottom_left">
+			<a href="#">
+				<img src="./img/money.png">
+			</a>
+		</div>
+
+		<div class="content container">
+			<div class="row justify-content-sm-center profile-line">
+				<div class="listAlbums">
+					<carouselalbums></carouselalbums>
+				</div>
+				<div class="big_photo">
+					<img src="./img/1_big.png">
+					<div class="info">
+          				<span class="name">Енотова Екатерина</span>
+          				<span class="status">Статус: мой статус</span>
+          				<div class="rating">
+          					<star-rating v-model="rating" :star-size="24" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" :increment="0.5" rating="4" @rating-selected ="setRating" :show-rating="false"></star-rating>
+          				</div>
+	          			<div class="smile">
+	          				<img src="./img/emogi.png">
+	          			</div>
+          			</div>
+				</div>
+				<div class="about">
+					<div class="profile-bg">
+						<a href="#" class="edit-profile"></a>
+						<div class="about-info">
+							<div class="about-text">
+								<p><strong>Дата рождения: </strong> 10.10.2000</p>
+								<p><strong>Семейное положение: </strong>в активном поиске</p>
+								<p><strong>Адрес: </strong>Москва, м. Павелецкая, ул. 3-й Павелецкий пр-д, д. 65Б, кв. 15</p>
+								<p><strong>Телефон: </strong>+7-999-999-99-99</p>
+								<p><strong>E-mail: </strong>myemail@gmail.com</p>
+								<p><strong>Место работы: </strong>ООО "Старт"</p>
+								<p><strong>Должность: </strong>Секретарь</p>
+							</div>
+							<div class="about-textarea">
+								<textarea placeholder="О себе"></textarea>
+							</div>
+							<div class="about-social">
+								<button>Написать сообщение</button>
+								<a href="#">+Подписаться</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row main_content">
+				<div class="container-fluid">
+
+					
+						<b-tabs nav-class="filters" nav-wrapper-class="row win-cont">
+						  <b-tab title="Новости" title-item-class="filter left first angle-right active" @click="setActiveNavItem(0)">
+
+						  	<carouselnews></carouselnews>
+						    
+						  	<!--
+							<div class="row news-list justify-content-sm-center">
+								<div class="col-5">
+									<div class="row">
+										<img src="./img/profile.png">
+										Екатерина Енотова <br>
+										20 сентября 2018
+									</div>
+									<div class="row">
+										<img src="./img/phone3.jpg">
+									</div>
+									<div class="row icons-control">
+			                            <img src="./img/heart2.png">
+			                            <img src="./img/locate-places.png">
+			                            <img src="./img/chat.png">
+			                            <img src="./img/more.png">
+			                            <img src="./img/eye.png">
+			                            <img src="./img/share2.png">
+									</div>
+									<div class="row comments">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Смотреть все комментарии (8)<br>
+										Екатерина Енотова: оооооооооооооооооооооооочень хочу такой
+									</div>
+									<div class="row write">
+										<img src="./img/profile.png"> Написать
+									</div>
+								</div>
+								<div class="col-1">
+								</div>
+								<div class="col-5">
+									<div class="row">
+										<img src="./img/profile.png">
+										Екатерина Енотова <br>
+										20 сентября 2018
+									</div>
+									<div class="row">
+										<img src="./img/phone3.jpg">
+									</div>
+									<div class="row icons-control">
+			                            <img src="./img/heart2.png">
+			                            <img src="./img/locate-places.png">
+			                            <img src="./img/chat.png">
+			                            <img src="./img/more.png">
+			                            <img src="./img/eye.png">
+			                            <img src="./img/share2.png">
+									</div>
+									<div class="row comments">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Смотреть все комментарии (8)<br>
+										Екатерина Енотова: оооооооооооооооооооооооочень хочу такой
+									</div>
+									<div class="row write">
+										<img src="./img/profile.png"> Написать
+									</div>
+								</div>
+							</div> -->
+
+
+
+						  </b-tab>
+						  <b-tab title="Услуги" title-item-class="filter left right angle-left angle-right" @click="setActiveNavItem(1)">
+						    <br>Тут услуги
+						  </b-tab>
+						  <b-tab title="Отзывы" title-item-class="filter left right angle-left angle-right" @click="setActiveNavItem(2)">
+						    <br>Тут Отзывы
+						  </b-tab>
+						  <b-tab title="Компании" title-item-class="filter left right angle-left angle-right" @click="setActiveNavItem(3)">
+						    <br>Тут Компании
+						  </b-tab>
+						  <b-tab title="Подписки" title-item-class="filter left right angle-left angle-right" @click="setActiveNavItem(4)">
+						    <br>Тут Подписки
+						  </b-tab>				  					  
+						</b-tabs>
+					
+
+					<!--<div class="row win-cont">
+						<div class="filters">
+							<div class="filter left first angle-right active">
+								<p class="text">Новости</p>
+							</div>
+							<div class="filter left right angle-left angle-right">
+								<p class="text">Услуги</p>
+							</div>
+							<div class="filter left right angle-left angle-right">
+								<p class="text">Отзывы</p>
+							</div>
+							<div class="filter left right angle-left angle-right">
+								<p class="text">Компании</p>
+							</div>
+							<div class="filter left right angle-left angle-right">
+								<p class="text">Подписки</p>
+							</div>
+						</div>
+					</div>-->
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+  </body>
+</html>

@@ -1,0 +1,260 @@
+html, body {	height: 100%;
+	margin: 0;
+}
+
+
+
+.win-cont{
+    --btn-color: rgba(171,211,226,1);
+    width: 800px;
+}
+.left {
+    z-index: 2;
+    left: 0px;
+    top: 0;
+    line-height: 0;
+}
+
+.right {
+    z-index: 2;
+    right: 0;
+    top: 0;
+    line-height: 0;
+}
+
+.win-cont .filters {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.filters .filter {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.filters .left {
+    margin-right: -23px;
+}
+
+.filters .right {
+    margin-left: -23px;
+}
+
+.filter.first {
+    /*padding-left: 3px;*/
+}
+
+.filter .text{
+    text-transform: uppercase;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background-color: var(--btn-color);
+    height: 50px;
+    padding: 0 3px;
+    cursor: pointer;
+}
+
+p.text {
+    font-size: 16px;
+}
+
+.filter.first p {
+
+}
+
+.angle-left::before {
+    content: '';
+    position: relative;
+    left: 0px;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-top: 50px solid var(--btn-color);
+    border-left: 50px solid transparent;
+    cursor: pointer;
+}
+
+.angle-right::after {
+    content: '';
+    position: relative;
+    right: 0px;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-bottom: 50px solid var(--btn-color);
+    border-right: 50px solid transparent;
+    cursor: pointer;
+}
+.last-filter, .last-filter p {
+	width: 100%;
+}
+
+
+
+
+
+#map {	background: transparent url('../img/bg_map.jpg') 0 0 no-repeat scroll;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 0;
+}
+#overlay {	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+#top_left {	position: fixed;
+	top: 10px;
+	left: 20px;
+	z-index: 2;
+}
+#top_left .top-line{	align-items: center;
+}
+.arrow {	width: 26px;
+	height: 45px;
+	padding: 0px;
+	cursor: pointer;
+}
+.arrow-left {	background: transparent url('../img/arrow-left.png') 0 0 no-repeat scroll;
+}
+.arrow-right {
+	background: transparent url('../img/arrow-right.png') 0 0 no-repeat scroll;
+}
+.blocks, .blocks .container-fluid {	padding: 0px;
+}
+.blocks .row{
+    align-items: center;
+}
+.block {	cursor: pointer;
+	text-align: center;
+}
+#top_right {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	z-index: 2;
+}
+.add-company {	text-align: center;
+}
+#bottom_left {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	z-index: 2;
+}
+.content {	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 3;
+}
+.profile-line {	margin-top: 20px;
+}
+.profile-line > div:not(:nth-child(2)) {	padding-top: 15px;
+}
+.profile-line .profile-bg {	background-color: rgba(255, 255, 255, 0.8);
+	padding: 15px 10px;
+}
+.my_photo {	margin-top: 4px;
+	position: relative;
+}
+.my_photo:nth-child(1) {	margin-top: 0px;
+}
+.my_photo p {	position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    margin: 0px;
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	justify-content: center;
+}
+.profile-line .big_photo {	position: relative;
+}
+.profile-line .big_photo .info {	height: 80px;
+	background-color: rgba(255, 255, 255, 0.3);
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	padding: 0 10px;
+}
+.profile-line .big_photo .info .name {	font-weight: bold;
+	font-size: 16px;
+}
+.profile-line .big_photo .info .status {
+	font-size: 10px;
+}
+.profile-line .big_photo .smile {	right: -16px;
+	bottom: -26px;
+	position: absolute;
+	z-index: 5;
+}
+.profile-line .about .profile-bg {	border: 1px solid #ccc;
+	position: relative;
+}
+.profile-line .about p {	margin-bottom: 5px;
+}
+.profile-line .about button {	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid #ccc;
+	margin-top: 10px;
+}
+.profile-line .about .edit-profile {	background: transparent url('../img/edit.png') 0 0 no-repeat;
+	width: 17px;
+	height: 17px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+.news-line {	background-color: rgba(255, 255, 255, 0.3);
+	margin-top: 20px;
+}
+.news-line p.text{	font-weight: bold;
+}
+.filters .active .text {	background-color: white;
+}
+.filters .active::after {
+    border-bottom: 50px solid white;
+}
+.news-list {	background-color: white;
+}
+.icons-control {	height: 30px;
+	border-top: 1px solid #ccc;
+}
+icons-control img {	max-height: 100%;
+}
+.comments, .write {
+	border-top: 1px solid #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
