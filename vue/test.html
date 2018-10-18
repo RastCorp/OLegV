@@ -64,6 +64,8 @@ body {
     display: flex;
     width: 100%;
     justify-content: flex-start;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(112, 112, 112, 0.3);
 }
 
 .filters .filter {
@@ -71,19 +73,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 5px;
-    padding-right: 5px;
     padding-left: 0px;
     padding-right: 0px;
-    position: relative;
 }
 
 .filters .left {
-    margin-right: -23px;
+    margin-right: -20px;
 }
 
 .filters .right {
-    margin-left: -23px;
+    margin-left: -20px;
 }
 
 .filter.first {
@@ -265,10 +264,16 @@ span.min-price {
 
 .subfilter-container {	position: absolute;
 	top: 52px;
-	z-index: 2;
+	z-index: -2;
 	background-color: #fff;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-	display: none;
+	display: block;
+	opacity: 0;
+	transition: opacity 0.3s linear;
+}
+.subfilter-container.open {
+	z-index: 2;	opacity: 1;
+	transition: opacity 0.3s linear;
 }
 .subfilter-price {	left: 0px;
 	width: 305px;
@@ -297,6 +302,72 @@ span.min-price {
 }
 .irs {	height: auto;
 }
+.subfilter-category {	left: 0px;
+	top: 51px;
+	/*width: calc(100% - 16px);*/
+	width: 100%;
+	max-height: 923px;
+	border: 1px solid rgba(112, 112, 112, 0.2);
+	background-color: rgba(255, 255, 255, 0.6);
+}
+.subfilter-category .subfilter-inner > div {
+	width: 100%;
+}
+.subfilter-category .category-items {	overflow-y: auto;
+	flex-grow: 1;
+	max-height: 879px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+	background: #fff;
+}
+.subfilter-category .category-item {	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	border: 1px solid rgba(112, 112, 112, 0.3);
+	box-shadow: 0px 3px 6px -3px rgba(0, 0, 0, 0.16);
+}
+.subfilter-category .category-item img {	padding: 0 35px;
+	height: 64px;
+    margin: -1px 0;
+}
+.subfilter-category .category-item span {	font-size: 24px;
+	line-height: 32px;
+	margin-top: -3px;
+}
+.subfilter-category .category-controls {	height: 44px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.subfilter-category .category-controls .left-buttons {	height: 28px;
+	padding-left: 15px;
+}
+.subfilter-category .category-controls .left-buttons button {	font-size: 16px;
+	background-color: #e8e8ea;
+	border: 1px solid rgba(112, 112, 112, 0.3);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	height: 100%;
+	margin-left: 20px;
+	padding-bottom: 3px;
+}
+.subfilter-category .category-hide-button {	background: transparent;
+	font-size: 21px;
+	line-height: 42px;
+	height: 100%;
+	color: #707070;
+	cursor: pointer;
+}
+.subfilter-category .category-hide-button::after {	content: '\276E';
+    display: block;
+    float: right;
+    font-size: 30px;
+    height: 22px;
+    margin-left: 38px;
+    margin-top: 11px;
+    transform: rotate(90deg);
+    width: 12px;
+}
+
 
 
 /* Checkbox */
@@ -326,18 +397,13 @@ span.min-price {
   border: 2px solid #AAD3E6;
   position: absolute;
   opacity: .6;
-  -webkit-transition: all .12s, border-color .08s;
-  transition: all .12s, border-color .08s;
+  /*-webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;  */
   top: -3px;
   left: 10px;
 }
 
 .style-checkbox input[type="checkbox"]:checked + label:before {
-  /*border-radius: 0;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg); */
   opacity: 1;
   content: '\2714';
   font-size: 34px;
@@ -376,71 +442,176 @@ span.min-price {
     			</div>
     			<div class="filter left right angle-left angle-right">
     				<p class="text">Категория</p>
+    				<div class="subfilter-container subfilter-category">
+	    				<div class="subfilter-inner">
+	    					<div class="category-items">
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/food.png">
+		                    		<span>Питание</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/everyday.png">
+		                    		<span>Бытовые услуги</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/business.png">
+		                    		<span>Деловые услуги</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/realty.png">
+		                    		<span>Недвижимость</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/it.png">
+		                    		<span>IT, интернет, телеком</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/beauty.png">
+		                    		<span>Красота</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/sport.png">
+		                    		<span>Спорт</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/medicine.png">
+		                    		<span>Медицина</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/courier.png">
+		                    		<span>Курьерские поручения</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/building.png">
+		                    		<span>Ремонт и строительство</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/holiday.png">
+		                    		<span>Праздники и мероприятия</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/auto.png">
+		                    		<span>Авто и перевозки</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/cleaning.png">
+		                    		<span>Клининг</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/education.png">
+		                    		<span>Обучение</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/relaxation.png">
+		                    		<span>Развлечение и отдых</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/animals.png">
+		                    		<span>Животные</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/advertising.png">
+		                    		<span>Реклама, полиграфия</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/garden.png">
+		                    		<span>Сад, благоустройство</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/security.png">
+		                    		<span>Охрана, безопасность</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/care.png">
+		                    		<span>Патронаж, уход</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/friend.png">
+		                    		<span>Друг на час</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/charity.png">
+		                    		<span>Благотворительность</span>
+		                    	</div>
+		                    	<div class="category-item">
+		                    		<img src="./img/categories/rip.png">
+		                    		<span>Ритуальные услуги</span>
+		                    	</div>
+		        			</div>
+		        			<div class="category-controls">
+		        				<div class="left-buttons">
+		        					<button>Выбрать все</button>
+		        					<button>Убрать все</button>
+		        				</div>
+		        				<div class="category-hide-button">Скрыть</div>
+		        			</div>
+	    				</div>
+	    			</div>
     			</div>
     			<div class="filter right angle-left last-filter">
     				<p class="text"></p>
     			</div>
     		</div>
 
-            <div data-v-4190e25c="" class="list-res">
+            <div class="list-res">
 
 
-                <div data-v-4190e25c="" class="item">
-                    <div data-v-4190e25c="" class="part1">
-                        <p data-v-4190e25c="" class="title"><a href="">Кальян-бар</a></p>
-                        <div data-v-4190e25c="" class="info">
+                <div class="item">
+                    <div class="part1">
+                        <p class="title"><a href="">Кальян-бар</a></p>
+                        <div class="info">
                             <div class="rating">
                                 <star-rating v-model="rating" :star-size="19" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
                             </div>
                             <div class="rating_label">2.5 <span class="min-price">цена от 100</span></div>
                         </div>
-                        <p data-v-4190e25c="" class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
-                            <br data-v-4190e25c="">открыт до 18:00
+                        <p class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
+                            <br>открыт до 18:00
                         </p>
                     </div>
-                    <div data-v-4190e25c="" class="part2">
-                        <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
-                        <p data-v-4190e25c="" class="text">нет отзывов</p>
+                    <div class="part2">
+                        <img src="http://bro4you.ru/images/no_image.jpg">
+                        <p class="text">нет отзывов</p>
                     </div>
                 </div>
 
 
-                <div data-v-4190e25c="" class="item">
-                    <div data-v-4190e25c="" class="part1">
-                        <p data-v-4190e25c="" class="title"><a href="">Кальян-бар</a></p>
-                        <div data-v-4190e25c="" class="info">
+                <div class="item">
+                    <div class="part1">
+                        <p class="title"><a href="">Кальян-бар</a></p>
+                        <div class="info">
                             <div class="rating">
                                 <star-rating v-model="rating" :star-size="19" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
                             </div>
                             <div class="rating_label">2.5 <span class="min-price">цена от 100</span></div>
                         </div>
-                        <p data-v-4190e25c="" class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
-                            <br data-v-4190e25c="">открыт до 18:00
+                        <p class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
+                            <br>открыт до 18:00
                         </p>
                     </div>
-                    <div data-v-4190e25c="" class="part2">
-                        <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
-                        <p data-v-4190e25c="" class="text">нет отзывов</p>
+                    <div class="part2">
+                        <img src="http://bro4you.ru/images/no_image.jpg">
+                        <p class="text">нет отзывов</p>
                     </div>
                 </div>
 
 
-                <div data-v-4190e25c="" class="item">
-                    <div data-v-4190e25c="" class="part1">
-                        <p data-v-4190e25c="" class="title"><a href="">Кальян-бар</a></p>
-                        <div data-v-4190e25c="" class="info">
+                <div class="item">
+                    <div class="part1">
+                        <p class="title"><a href="">Кальян-бар</a></p>
+                        <div class="info">
                             <div class="rating">
                                 <star-rating v-model="rating" :star-size="19" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
                             </div>
                             <div class="rating_label">2.5 <span class="min-price">цена от 100</span></div>
                         </div>
-                        <p data-v-4190e25c="" class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
-                            <br data-v-4190e25c="">открыт до 18:00
+                        <p class="text">Россия, Москва, Октябрьская улица, 26, стр. 1
+                            <br>открыт до 18:00
                         </p>
                     </div>
-                    <div data-v-4190e25c="" class="part2">
-                        <img data-v-4190e25c="" src="http://bro4you.ru/images/no_image.jpg">
-                        <p data-v-4190e25c="" class="text">нет отзывов</p>
+                    <div class="part2">
+                        <img src="http://bro4you.ru/images/no_image.jpg">
+                        <p class="text">нет отзывов</p>
                     </div>
                 </div>
             </div>
@@ -449,7 +620,17 @@ span.min-price {
 
     <script type="text/javascript">
     	$(document).ready(function(){
-    		$('.filter').on('click', function(){    			$(this).find('.subfilter-container').toggle();    		});
+    		$('.filter').on('click', function(){
+    			$('.filter .subfilter-container').removeClass('open');    			$(this).find('.subfilter-container').addClass('open');    		});
+
+    		$('.subfilter-price [type=checkbox]').on('click', function(){
+    			e.stopPropagation();
+    			if ($(this).is(':checked')) console.log('Применили фильтр');
+    			else console.log('Отменили фильтр');
+    		});
+
+    		$('.subfilter-category .category-hide-button').on('click', function(e){
+    		    e.stopPropagation();    			$('.subfilter-category').removeClass('open');    		});
 
 			var $range = $(".js-range-slider"),
 			    $inputFrom = $(".js-input-from"),
