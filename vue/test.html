@@ -263,20 +263,22 @@ span.min-price {
 
 
 
-.subfilter {	position: absolute;
+.subfilter-container {	position: absolute;
 	top: 52px;
 	z-index: 2;
 	background-color: #fff;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+	display: none;
 }
 .subfilter-price {	left: 0px;
 	width: 305px;
 	height: 68px;
-	display: flex;
-	flex-direction: column;
+	padding: 5px 33px;
+}
+.subfilter-inner {
+	display: flex;	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 5px 33px;
 }
 .subfilter-price .inputs {	display: flex;
 	align-items: center;
@@ -352,20 +354,22 @@ span.min-price {
     		<div class="filters">
     			<div class="filter left first angle-right sort_asc">
     				<p class="text">Цена</p>
-    				<div class="subfilter subfilter-price">
-                    	<div class="inputs">
-                    		<input type="text" class="js-input-from" value="">
-                    		<span class="delimiter">-</span>
-                    		<input type="text" class="js-input-to" value="">
-                    		<div class="style-checkbox">
-							  <input type="checkbox" name="send" id="price-checkbox">
-							  <label for="price-checkbox"></label>
-							</div>
-                    	</div>
-                    	<div class="slider">
-                    		<input type="text" class="js-range-slider" data-min="0" data-from="2000" data-max="5000" data-to="5000">
-                    	</div>
-    				</div>
+    				<div class="subfilter-container subfilter-price">
+	    				<div class="subfilter-inner">
+	                    	<div class="inputs">
+	                    		<input type="text" class="js-input-from" value="">
+	                    		<span class="delimiter">-</span>
+	                    		<input type="text" class="js-input-to" value="">
+	                    		<div class="style-checkbox">
+								  <input type="checkbox" name="send" id="price-checkbox">
+								  <label for="price-checkbox"></label>
+								</div>
+	                    	</div>
+	                    	<div class="slider">
+	                    		<input type="text" class="js-range-slider" data-min="0" data-from="2000" data-max="5000" data-to="5000">
+	                    	</div>
+	    				</div>
+	    			</div>
     			</div>
     			<div class="filter left right angle-left angle-right sort_desc active">
     				<p class="text">Рейтинг</p>
@@ -444,7 +448,10 @@ span.min-price {
     </div>
 
     <script type="text/javascript">
-    	$(document).ready(function(){			var $range = $(".js-range-slider"),
+    	$(document).ready(function(){
+    		$('.filter').on('click', function(){    			$(this).find('.subfilter-container').toggle();    		});
+
+			var $range = $(".js-range-slider"),
 			    $inputFrom = $(".js-input-from"),
 			    $inputTo = $(".js-input-to"),
 			    instance,
