@@ -41,6 +41,8 @@ body {
 
 
 
+.pos-rel {	position: relative;
+}
 
 .win-cont{
     --btn-color: rgba(170,211,230,1);
@@ -297,6 +299,7 @@ span.min-price {
 	width: 87px;
 	text-slign: center;
 	height: 25px;
+	color: rgba(0, 0, 0, 0.8);
 }
 .slider {	width: 100%;
 }
@@ -356,7 +359,7 @@ span.min-price {
 	opacity: 1;
 	transition: opacity 0.3s linear;
 }
-.subfilter-category .category-item .caret:after {
+.subfilter-category .category-item .caret::after {
 	display: none;
 	content: '\276E';
     font-size: 30px;
@@ -366,7 +369,7 @@ span.min-price {
     transform: rotate(-90deg);
     width: 13px;
 }
-.subfilter-category .category-item.open .caret:after {    display: block;
+.subfilter-category .category-item.open .caret::after {    display: block;
 }
 .subfilter-category .category-item .subcategory-item {	padding-left: 120px;
 	cursor: pointer;
@@ -450,6 +453,93 @@ span.min-price {
   content: '\2714';
   font-size: 34px;
   border: 2px solid #E8E8EA;
+}
+
+
+
+/* блок по людям */
+.list-res.people {
+}
+.list-res.people .item{
+	padding: 12px 0px;
+	justify-content: flex-start;
+}
+.list-res.people .img-container {	width: 81px;
+	position: relative;
+	margin: 0 26px;
+}
+.list-res.people .img-container img {	width: 100%;
+	height: 100%;
+}
+.list-res.people .img-container .icon {	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 19px;
+	height: 19px;
+}
+.list-res.people .rating {	margin-top: 7px;
+}
+.list-res.people .status {
+	font-size: 16px;
+	line-height: 21px;
+}
+.list-res.people .people-social {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 10px;
+}
+.list-res.people .people-social button {
+	border: 1px solid rgba(112, 112, 112, 0.6);
+	height: 29px;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.8);
+	background-color: #fff;
+}
+.list-res.people .people-social a {
+	color: rgba(0, 0, 0, 0.8);
+	font-size: 18px;
+	line-height: 24px;
+	margin-left: 29px;
+}
+
+.subfilter-age {	width: 204px;
+	left: 0px;
+	padding: 8px 12px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+.subfilter-age .inputs {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+.subfilter-age .inputs input {
+	border: 1px solid rgba(112, 112, 112, 1);
+	font-size: 14px;
+	line-height: 19px;
+	text-align: left;
+	height: 30px;
+	padding: 3px;
+	color: rgba(0, 0, 0, 0.5);
+	width: 30%;
+	flex-grow: 1;
+}
+.subfilter-age .delimiter {	margin: 0 4px;
+}
+
+
+.subfilter-district, .subfilter-sex {	position: absolute;
+	left: 50px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+.subfilter-district .district-item, .subfilter-sex .sex-item  {	width: 100%;
+	padding: 2px 8px;
+	font-size: 18px;
+	line-height: 24px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+.subfilter-district .district-item:hover, .subfilter-district .district-item.selected, .subfilter-sex .sex-item:hover, .subfilter-sex .sex-item.selected {	background-color: rgba(172, 210, 225, 1);
 }
 
 </style>
@@ -730,6 +820,165 @@ span.min-price {
                 </div>
             </div>
     	</div>
+
+        <!-- второй блок фильтров. Атрибут style не нужен -->
+    	<div class="win-cont" style="position: absolute; right: 0px; top: 0px;">
+    		<div class="filters">
+    			<div class="filter left first angle-right sort_asc">
+    				<p class="text">Возраст</p>
+    				<div class="subfilter-container subfilter-age">
+	    				<div class="subfilter-inner">
+	                    	<div class="inputs">
+	                    		<input type="text" value="" placeholder="От">
+	                    		<span class="delimiter">-</span>
+	                    		<input type="text" placeholder="До" value="">
+	                    		<div class="style-checkbox">
+								  <input type="checkbox" name="send" id="age-checkbox">
+								  <label for="age-checkbox"></label>
+								</div>
+	                    	</div>
+	    				</div>
+	    			</div>
+    			</div>
+    			<div class="filter left right angle-left angle-right sort_desc active pos-rel">
+    				<p class="text">Пол</p>
+    				<div class="subfilter-container subfilter-sex">
+	    				<div class="subfilter-inner">
+                        	<div class="sex-item">Женский</div>
+                        	<div class="sex-item">Мужской</div>
+	    				</div>
+	    			</div>
+    			</div>
+    			<div class="filter left right angle-left angle-right pos-rel">
+    				<p class="text">Округ</p>
+    				<div class="subfilter-container subfilter-district">
+	    				<div class="subfilter-inner">
+                        	<div class="district-item">Центральный</div>
+                        	<div class="district-item">Северный</div>
+                        	<div class="district-item">Северо-Восточный</div>
+                        	<div class="district-item">Восточный</div>
+                        	<div class="district-item">Южный</div>
+                        	<div class="district-item">Юго-западный</div>
+                        	<div class="district-item">Западный</div>
+                        	<div class="district-item">Северо-Западный</div>
+                        	<div class="district-item">Троицкий</div>
+                        	<div class="district-item">Новомосковский</div>
+	    				</div>
+	    			</div>
+    			</div>
+    			<div class="filter right angle-left last-filter">
+    				<p class="text">Онлайн</p>
+    			</div>
+    		</div>
+
+            <div class="list-res people">
+
+
+                <div class="item">
+                    <div class="part2">
+                        <div class="img-container">
+                        	<img src="./img/1.png">
+                        	<img class="icon" src="./img/emogi.png">
+                        </div>
+                        <div class="rating">
+                            <star-rating v-model="rating" :star-size="15" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                        </div>
+                    </div>
+                    <div class="part1">
+                        <p class="title"><a href="">Енотова Анастасия Владимировна</a></p>
+                        <p class="status">Статус: Ищу собутыльника</p>
+                        <div class="people-social">
+							<button>Написать сообщение</button>
+							<a href="#">+Подписаться</a>
+						</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="part2">
+                        <div class="img-container">
+                        	<img src="./img/1.png">
+                        	<img class="icon" src="./img/emogi.png">
+                        </div>
+                        <div class="rating">
+                            <star-rating v-model="rating" :star-size="15" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                        </div>
+                    </div>
+                    <div class="part1">
+                        <p class="title"><a href="">Енотова Анастасия Владимировна</a></p>
+                        <p class="status">Статус: Ищу собутыльника</p>
+                        <div class="people-social">
+							<button>Написать сообщение</button>
+							<a href="#">+Подписаться</a>
+						</div>
+                    </div>
+                </div>
+
+
+                <div class="item">
+                    <div class="part2">
+                        <div class="img-container">
+                        	<img src="./img/1.png">
+                        	<img class="icon" src="./img/emogi.png">
+                        </div>
+                        <div class="rating">
+                            <star-rating v-model="rating" :star-size="15" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                        </div>
+                    </div>
+                    <div class="part1">
+                        <p class="title"><a href="">Енотова Анастасия Владимировна</a></p>
+                        <p class="status">Статус: Ищу собутыльника</p>
+                        <div class="people-social">
+							<button>Написать сообщение</button>
+							<a href="#">+Подписаться</a>
+						</div>
+                    </div>
+                </div>
+
+
+                <div class="item">
+                    <div class="part2">
+                        <div class="img-container">
+                        	<img src="./img/1.png">
+                        	<img class="icon" src="./img/emogi.png">
+                        </div>
+                        <div class="rating">
+                            <star-rating v-model="rating" :star-size="15" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                        </div>
+                    </div>
+                    <div class="part1">
+                        <p class="title"><a href="">Енотова Анастасия Владимировна</a></p>
+                        <p class="status">Статус: Ищу собутыльника</p>
+                        <div class="people-social">
+							<button>Написать сообщение</button>
+							<a href="#">+Подписаться</a>
+						</div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="part2">
+                        <div class="img-container">
+                        	<img src="./img/1.png">
+                        	<img class="icon" src="./img/emogi.png">
+                        </div>
+                        <div class="rating">
+                            <star-rating v-model="rating" :star-size="15" active-color="#FAC917" inactive-color="#E9E9EB" :border-width="0" rating="4"  :show-rating="false"></star-rating>
+                        </div>
+                    </div>
+                    <div class="part1">
+                        <p class="title"><a href="">Енотова Анастасия Владимировна</a></p>
+                        <p class="status">Статус: Ищу собутыльника</p>
+                        <div class="people-social">
+							<button>Написать сообщение</button>
+							<a href="#">+Подписаться</a>
+						</div>
+                    </div>
+                </div>
+
+            </div>
+    	</div>
+
     </div>
 
     <script type="text/javascript">
@@ -738,8 +987,8 @@ span.min-price {
     		$('.filter').on('click', function(){
     			$('.filter .subfilter-container').removeClass('open');    			$(this).find('.subfilter-container').addClass('open');    		});
 
-			// клик на чекбокс в фильтре по цене
-    		$('.subfilter-price [type=checkbox]').on('click', function(e){
+			// клик на чекбокс в фильтре по цене или возраст
+    		$('.subfilter-container [type=checkbox]').on('click', function(e){
     			e.stopPropagation();
     			if ($(this).is(':checked')) console.log('Применили фильтр');
     			else console.log('Отменили фильтр');
@@ -774,6 +1023,18 @@ span.min-price {
 			// клик на кнопку "Скрыть"
     		$('.subfilter-category .category-hide-button').on('click', function(e){
     		    e.stopPropagation();    			$('.subfilter-category').removeClass('open');    		});
+
+			// клик на округ
+    		$('.subfilter-district .district-item').on('click', function(e){
+				e.stopPropagation();
+    			$(this).toggleClass('selected');
+    		});
+
+			// клик на пол
+    		$('.subfilter-sex .sex-item').on('click', function(e){
+				e.stopPropagation();
+    			$(this).toggleClass('selected');
+    		});
 
             // слайдер			var $range = $(".js-range-slider"),
 			    $inputFrom = $(".js-input-from"),
