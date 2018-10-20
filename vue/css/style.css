@@ -9,7 +9,7 @@ img {
 }
 .win-cont{
     --btn-color: rgba(170,211,230,1);
-    width: 800px;
+    width: 100%;
 }
 
 ::selection, ::-moz-selection{
@@ -48,7 +48,8 @@ img {
 }
 .nav-tabs:after {
 	content: ' ';
-	width: calc(100% - 7px);
+	/*width: calc(100% - 7px);*/
+	width: 793px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 	height: 6px;
 	margin-top: -5px;
